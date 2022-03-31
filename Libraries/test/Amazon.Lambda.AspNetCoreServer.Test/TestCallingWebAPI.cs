@@ -357,8 +357,7 @@ namespace Amazon.Lambda.AspNetCoreServer.Test
 
             Assert.Equal(200, response.StatusCode);
             Assert.True(response.Body.Length == 0);
-            Assert.Equal(1, response.MultiValueHeaders["Content-Type"].Count);
-            Assert.Null(response.MultiValueHeaders["Content-Type"][0]);
+            Assert.Null(response.Headers["Content-Type"]);
         }
 
         [Fact]
@@ -368,8 +367,7 @@ namespace Amazon.Lambda.AspNetCoreServer.Test
 
             Assert.Equal(302, response.StatusCode);
             Assert.True(response.Body.Length == 0);
-            Assert.Equal(1, response.MultiValueHeaders["Content-Type"].Count);
-            Assert.Null(response.MultiValueHeaders["Content-Type"][0]);
+            Assert.Null(response.Headers["Content-Type"]);
 
             Assert.Equal("redirecttarget", response.MultiValueHeaders["Location"][0]);
         }

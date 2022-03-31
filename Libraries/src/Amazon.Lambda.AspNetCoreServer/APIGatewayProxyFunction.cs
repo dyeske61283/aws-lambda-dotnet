@@ -301,13 +301,13 @@ namespace Amazon.Lambda.AspNetCoreServer
                 }
             }
 
-            if (contentType == null)
-            {
-                response.MultiValueHeaders["Content-Type"] = new List<string>() { null };
-            }
-
             if (responseFeatures.Body != null)
             {
+                if (contentType == null)
+                {
+                    response.Headers["Content-Type"] = null;
+                }
+                
                 // Figure out how we should treat the response content, check encoding first to see if body is compressed, then check content type
                 var rcEncoding = GetResponseContentEncodingForContentEncoding(contentEncoding);
                 if (rcEncoding != ResponseContentEncoding.Base64)
